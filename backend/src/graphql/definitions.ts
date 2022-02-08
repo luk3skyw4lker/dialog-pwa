@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-core';
 
 import { Resolvers } from '../@types/Resolvers';
-import { UsersParams } from '../@types/UsersParameters';
+import { ListParams, GetParams } from '../@types/UsersParameters';
 import { users } from '../data/users';
 
 export const defs = gql`
@@ -15,17 +15,18 @@ export const defs = gql`
 		company: String!
 		email: String!
 		phone: String!
-		friends: [Users]
+		friends: [Users]!
 	}
 
 	type Query {
 		list(name: String): [Users]
+		get(id: String): Users
 	}
 `;
 
 export const definedResolvers: Resolvers = {
 	Query: {
-		list: (_parent: any, args: UsersParams) => {
+		list: (_parent: any, args: ListParams) => {
 			if (!args.name) {
 				return users;
 			}
@@ -33,6 +34,8 @@ export const definedResolvers: Resolvers = {
 			const regex = new RegExp(`${args.name.split(' ').join('.*')}`, 'gi');
 
 			return users.filter((user) => regex.test(user.name));
-		}
+		},
+		get: (_parent: any, args: GetParams) =>
+			users.find((user) => user._id === args.id)
 	}
 };
