@@ -24,6 +24,8 @@
 		"comma-dangle": "off",
 		"import/extensions": "off",
 		"import/prefer-default-export": "off",
+		"implicit-arrow-linebreak": "off",
+		"no-underscore-dangle": "off",
 		"import-helpers/order-imports": [
 			"warn",
 			{
