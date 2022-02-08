@@ -8,4 +8,5 @@ export interface Users {
 	name: string;
 	phone: string;
 	picture: string;
+	friends: Users[];
 }

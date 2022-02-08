@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Container, ProfilePicture, UserInfo, UserInfoText } from './styles';
+import { ProfilePicture, UserInfo, UserInfoText } from '../UserLink/styles';
+import { Container } from './styles';
 import { Users } from '../../@types/Users';
 
 interface UserCardProps {
@@ -9,7 +10,7 @@ interface UserCardProps {
 
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
 	return (
-		<Container to="friends">
+		<Container>
 			<ProfilePicture src={user.picture} />
 			<UserInfo>
 				<UserInfoText>name: {user.name}</UserInfoText>
