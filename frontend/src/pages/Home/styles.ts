@@ -6,7 +6,7 @@ export const Container = styled.main`
 
 export const UsersGrid = styled.div`
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
 	justify-items: center;
 	column-gap: 1em;
 	row-gap: 1em;

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import Header from '../../components/Header';
-import UserCard from '../../components/UserCard';
+import UserLink from '../../components/UserLink';
 import { Users } from '../../@types/Users';
 
 import { Container, UsersGrid } from './styles';
 
-const USERS_QUERY = gql`
+const LIST_USERS_QUERY = gql`
 	{
 		list {
 			_id
@@ -18,23 +18,13 @@ const USERS_QUERY = gql`
 			name
 			phone
 			picture
-			friends {
-				_id
-				age
-				company
-				email
-				eyeColor
-				index
-				name
-				phone
-				picture
-			}
 		}
 	}
 `;
 
 const Home: React.FC = () => {
-	const { data, loading, error } = useQuery<{ list: Users[] }>(USERS_QUERY);
+	const { data, loading, error } =
+		useQuery<{ list: Users[] }>(LIST_USERS_QUERY);
 	const [search, setSearch] = useState<string>('');
 
 	if (loading) {
@@ -45,11 +35,9 @@ const Home: React.FC = () => {
 		return <h1>{error}</h1>;
 	}
 
-	const handleSearch = (value: string) => setSearch(value);
-
 	return (
 		<>
-			<Header onChangeSearch={handleSearch} />
+			<Header onChangeSearch={setSearch} />
 			<Container>
 				<UsersGrid>
 					{data?.list
@@ -59,7 +47,7 @@ const Home: React.FC = () => {
 								: user
 						)
 						.map(user => (
-							<UserCard key={user._id} user={user} />
+							<UserLink key={user._id} user={user} />
 						))}
 				</UsersGrid>
 			</Container>
