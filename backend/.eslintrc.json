@@ -23,6 +23,7 @@
 		"no-promise-executor-return": "off",
 		"comma-dangle": "off",
 		"import/extensions": "off",
+		"import/prefer-default-export": "off",
 		"import-helpers/order-imports": [
 			"warn",
 			{
