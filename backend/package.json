@@ -4,7 +4,8 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
-		"dev": "tsnd --transpile-only --ignore-watch node_modules --respawn --no-notify src/index.ts"
+		"dev": "tsnd --transpile-only --ignore-watch node_modules --respawn --no-notify src/index.ts",
+		"build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.17.0",
