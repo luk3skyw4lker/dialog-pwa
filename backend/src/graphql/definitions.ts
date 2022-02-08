@@ -30,7 +30,7 @@ export const definedResolvers: Resolvers = {
 				return users;
 			}
 
-			const regex = new RegExp(args.name);
+			const regex = new RegExp(`${args.name.split(' ').join('.*')}`, 'gi');
 
 			return users.filter((user) => regex.test(user.name));
 		}
