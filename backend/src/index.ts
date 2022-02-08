@@ -4,11 +4,16 @@ import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { DocumentNode } from 'graphql';
 import { createServer } from 'http';
+import morgan from 'morgan';
 
+import { formatLog } from './config/morgan';
 import { definedResolvers, defs } from './graphql/definitions';
 
 const startApolloServer = async (typeDefs: DocumentNode, resolvers: any) => {
 	const app = express();
+
+	app.use(morgan(formatLog));
+
 	const httpServer = createServer(app);
 	const apolloServer = new ApolloServer({
 		typeDefs,
